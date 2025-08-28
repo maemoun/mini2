@@ -7,8 +7,8 @@ int	ft_env(t_env *env_list)
 	tmp = env_list;
 	while (tmp)
 	{
-		if (tmp->eg == true)
-			printf("%s=%s\n", tmp->key, tmp->value);
+		// if (tmp->eg == true)
+		printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (0);
