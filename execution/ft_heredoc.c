@@ -32,22 +32,22 @@ void	herdoc_read(t_command *cmd, char *name, t_env *env_list, t_red_type type)
 			break ;
 		if (!ft_check_strcmp(line, name))
 		{
-			// free(line);
-			// line = NULL;
+			free(line);
+			line = NULL;
 			break ;
 		}
 		// if (type == D_HERDOC_Q)
-			// ft_putstr_fd2(line, cmd->fd_herdoc[1]);
+		ft_putstr_fd2(line, cmd->fd_herdoc[1]);
+		ft_putstr_fd2("\n", cmd->fd_herdoc[1]);
 		// else
 		// 	expand_cmd_heredoc(&line, cmd, cmd->fd_herdoc[1]);
 		free(line);
 	}
-	if (line)
-		free(line);
+	// if (line)
+	// 	free(line);
 	// free(name);
 	close(cmd->fd_herdoc[1]);
 }
-
 
 bool	ft_create_herdoc(t_env *env_list, t_command *cmd, char *name, t_red_type type)
 {
@@ -99,8 +99,10 @@ bool	ft_process_heredocs(t_command *cmd, t_env *env_list)
 			{
 				if (tmp->fd_herdoc[0] != -1)
 					close_fd(&tmp->fd_herdoc[0]);
-				if (tmp->fd_herdoc[1] != -1)
-					close_fd(&tmp->fd_herdoc[1]);
+				// if (tmp->fd_herdoc[1] != -1)
+				// 	close_fd(&tmp->fd_herdoc[1]);
+				if (pipe(tmp->fd_herdoc) == -1)
+					return (print_error(errno, NULL, NULL), false);
 				if (!ft_create_herdoc(env_list, tmp, redi->name, redi->type))
 					return (close_fd(&tmp->fd_herdoc[0]), close_fd(&tmp->fd_herdoc[1]), false);
 			}

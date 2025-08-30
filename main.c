@@ -77,8 +77,7 @@ int	minishell(t_data *dt, t_env *env_list)
 			free_tokens(tokens);
 			continue ;
 		}
-		// print_command_list(cmd);
-		// exit (0);
+		// print_commands(cmd);
 		ft_exec_cmd(cmd, env_list);
 		dt->exit_status = 0;
 		free_commands(cmd);

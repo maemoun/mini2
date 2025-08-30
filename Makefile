@@ -7,6 +7,7 @@ FLAGS   = -Wall -Wextra -Werror -I.
 LDFLAGS = -lreadline
 
 SRC     := main.c \
+			print.c \
 		   ./parsing/tokenization/tokens.c \
 		   ./parsing/tokenization/join_tokens.c \
 		   ./parsing/tokenization/add_spaces.c \

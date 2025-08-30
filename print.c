@@ -1,4 +1,4 @@
-#include "main.h"
+#include "./parsing/main.h"
 
 const char *get_type_str(t_type type)
 {

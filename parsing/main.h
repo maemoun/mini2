@@ -310,4 +310,5 @@ bool	setup_pipes(t_command *cmd);
 
 void	print_command_list(t_command *head);
 void	print_command_debug(t_command *cmd);
+void print_commands(t_command *cmds);
 #endif

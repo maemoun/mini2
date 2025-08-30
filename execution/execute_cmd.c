@@ -197,11 +197,8 @@ void	child_process(t_env *env_list, t_command *cmd)
 	env = NULL;
 	if (!ft_handle_redirection(cmd))
 		exit(1);
-	if (cmd->next_command || cmd->prev) // Only if part of a pipeline
-	{
-		if (!setup_pipes(cmd))
-			exit(1);
-	}
+	if (!setup_pipes(cmd))
+		exit(1);
 	if (!duplicate_std_fds(cmd))
 		exit(1);
 	if (is_builtin(cmd->command[0]))
@@ -272,10 +269,13 @@ void	execute_cmd(t_command *cmd, t_env *env_list)
 		}
 	    if (fork_pid != 0)
         {
-            if (list->next_command || list->prev)
-                parent_process(list);
+            parent_process(list);
         }
 		list = list->next_command;
+	
 	}
-	while(wait_and_exit(fork_pid));
+	printf("sowa\n");
+	// while(wait(NULL) != -1)
+	// 	;
+	wait_and_exit(fork_pid);
 }
